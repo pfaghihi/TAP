@@ -1,0 +1,50 @@
+<div class="header">
+  <div class="container">
+    <div class="row">
+      <div class="logo col-lg-5 col-md-5 col-sm-12">
+        <a href="https://appolizer.ca/index.php">
+          <img style="width: 200px" src="assets/logo-appolizer.png" alt="Medical Press">
+        </a>
+      </div>
+      <div class="col-lg-7 col-md-7 col-sm-12">
+        <nav class="main-menu" *ngIf="headerVisible">
+          <ul id="menu-main-menu" class="header-nav clearfix">
+            <li [class.active]="item.active"  id="menu-item-16" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-16" *ngFor="let item of mainNavItems">
+              <div (click)="navigateTo(item)" *ngIf="item.label != 'Sign out'"><span>{{ item.label | uppercase }}</span></div>
+              <div (click)="signOut()" *ngIf="item.label == 'Sign out'"><span>{{ item.label | uppercase }}</span></div>
+            </li>
+            <li class="menu-item-username" *ngIf="username">
+              <div>
+                <span class="menu-item-username__text" (click)="menu.toggle($event)">{{ username }}</span>
+                <!-- <button type="button" pButton pRipple icon="pi pi-bars" label="Show" (click)="menu.toggle($event)"></button> -->
+                <p-menu #menu [popup]="true" [model]="items"></p-menu>
+              </div>
+            </li>
+          </ul>
+        </nav>
+        <nav class="main-menu" *ngIf="jobPageheaderVisible">
+          <ul id="menu-main-menu" class="header-nav clearfix">
+            <li [class.active]="item.active"  id="menu-item-16" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-16" *ngFor="let item of mainNavItems">
+              <div (click)="navigateTo(item)" *ngIf="item.label != 'Sign out'"><span>{{ item.label }}</span></div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="banner clearfix" [class.job-header]="jobPageheaderVisible" style="background-image: url('assets/appolizer-header.jpg');">
+  <div class="container">
+    <h2 *ngIf="bannerText == '' && userType == userAccessType.Admin && headerVisible">Candidates</h2>
+    <h2 *ngIf="bannerText == '' && userType == userAccessType.Company && headerVisible">Jobs</h2>
+    <h2 *ngIf="bannerText == '' && userType == userAccessType.Student && headerVisible">User Info</h2>
+    <h2 *ngIf="bannerText != '' && headerVisible">{{ bannerText | uppercase }}</h2>
+  </div>
+</div>
+
+<div *ngIf="jobPageheaderVisible" [class.job-subheader]="jobPageheaderVisible">
+  <div class="container">
+    <h1>Resourcing for start ups, short term, long term, permanent contracts.</h1>
+  </div>
+</div>

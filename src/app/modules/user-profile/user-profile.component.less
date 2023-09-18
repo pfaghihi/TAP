@@ -1,0 +1,128 @@
+.student-detail-container__basic-info {
+  .row {
+    margin-bottom: 1rem;
+    color: #003248;
+  }
+
+  .form-check {
+    margin-left: 1rem;
+  }
+}
+
+.student-detail-container__location,
+.student-detail-container__experience,
+.student-detail-container__education
+ {
+  .row {
+    margin-bottom: 1rem;
+    color: #003248;
+  }
+}
+
+.student-detail-container__languages {
+  .row {
+    color: #003248;
+  }
+
+  .form-check {
+    margin-left: 1rem;
+  }
+}
+
+.form-check-input:checked {
+  background-color: #66B2D2;
+  border-color: #66B2D2;
+}
+
+.student-detail-container__submit {
+  margin-top: 3rem;
+}
+
+.student-detail-container_delete,
+.student-detail-container_add,
+.student-detail-container__submit-primary {
+  border-color: #4DA5CB;
+  background-color: #4DA5CB;
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    background-color: #007EB4;
+    border-color: #007EB4;
+  }
+}
+
+.student-detail-container_add {
+  position: absolute;
+  top: 40px;
+
+  i {
+    font-size: 1.8rem;
+  }
+}
+
+.form-floating > .form-control:focus, .form-floating > .form-control:not(:placeholder-shown),
+.form-floating > .form-control-plaintext:focus,
+.form-floating > .form-control-plaintext:not(:placeholder-shown) {
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+}
+
+
+.student-detail-skills_dropdown {
+  border: 1px solid #f0f0f0;
+  background: #FCFCFC;
+  position: absolute;
+
+  margin-top: 2px;
+  width: 100%;
+  z-index: 2;
+
+  a {
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+    display: block;
+    padding: 8px;
+
+    &:hover {
+      background-color: #E6F2F8;
+    }
+  }
+}
+
+/deep/ .p-datatable.p-datatable-sm .p-datatable-tbody > tr > td {
+  padding: 0 1rem;
+}
+
+/deep/ p-button .p-button-sm.p-button.p-component {
+  border-color: #4da5cb;
+  background-color: #4da5cb;
+  cursor: pointer;
+  position: absolute;
+  top: 22px;
+}
+
+.p-button.p-button-icon-only {
+  padding: 0.25rem 0;
+}
+
+.card .row {
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.college-other-radiobutton {
+  p-radioButton {
+    vertical-align: baseline;
+  }
+
+  label {
+    margin-left: 0.5rem;
+  }
+
+  input {
+    display: inline-block;
+    width: 78%;
+    margin-left: 0.4rem;
+  }
+}

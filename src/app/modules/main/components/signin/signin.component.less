@@ -1,0 +1,126 @@
+.container.signin-container {
+  align-items: flex-start;
+}
+
+.form-signin {
+  width: 400px;
+  max-width: 600px;
+  padding: 15px;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+
+.signin--text_label {
+  display: block;
+  height: 40px;
+  width: 100%;
+  font-size: 16px;
+  line-height: 60px;
+  color: var(--color-text-secondary, #666);
+}
+
+.signin--text_label-noaccount {
+  height: 40px;
+  margin-bottom: 20px;
+}
+
+.btn-primary {
+  background-color: #3398C3;
+  border-color: #3398C3;
+
+  &:hover {
+    background-color: #007eb4;
+    border-color: #007eb4;
+  }
+}
+
+.job-description {
+  white-space: nowrap;
+  max-height: 100px;
+  overflow: hidden;
+  max-width: 75ch;
+  text-overflow: ellipsis;
+}
+
+.container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-evenly;
+	align-items: center;
+	align-content: stretch;
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
+
+  > div:nth-child(2) {
+    position: relative;
+
+    p-progressspinner {
+      position: absolute;
+      top: 40%;
+    }
+
+    .form-signin.inprogress {
+      opacity: 0.5;
+    }
+  }
+}
+
+.custom-spinner .p-progress-spinner-circle {
+  animation: custom-progress-spinner-dash 1.5s ease-in-out infinite, custom-progress-spinner-color 6s ease-in-out infinite;
+}
+
+:host ::ng-deep .custom-spinner .p-progress-spinner-circle {
+  animation: custom-progress-spinner-dash 1.5s ease-in-out infinite,
+    custom-progress-spinner-color 6s ease-in-out infinite;
+}
+
+@keyframes custom-progress-spinner-color {
+  100%,
+  0% {
+    stroke: #16697a;
+  }
+  40% {
+    stroke: #16697a;
+  }
+  66% {
+    stroke: #16697a;
+  }
+  80%,
+  90% {
+    stroke: #16697a;
+  }
+}
+
+@keyframes custom-progress-spinner-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124px;
+  }
+}

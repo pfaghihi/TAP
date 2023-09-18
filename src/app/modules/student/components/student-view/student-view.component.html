@@ -1,0 +1,120 @@
+<div class="breadcrumbs">
+  <div class="container">
+    <p-breadcrumb [model]="breadcrumbs" *ngIf="!isLoading"></p-breadcrumb>
+  </div>
+</div>
+
+<div class="student-view-container">
+  <div>
+    <div class="mt-4 student-view-info">
+      <div class="student-view-name">
+        {{ userInfo.first_name }} {{ userInfo.last_name }}
+      </div>
+
+      <div class="student-view-contact">
+        <span><i class="pi pi-phone" style="font-size: 1rem"></i>: {{ userInfo.contact_number }}</span>
+        <span><i class="pi pi-envelope" style="font-size: 1rem"></i>: {{ userInfo.email }}</span>
+        <span><i class="pi pi-linkedin" style="font-size: 1rem"></i>: {{ userInfo.link }}</span>        
+        <div>Status: <span [class]="'student-badge status-' + userInfo.availability">{{ userInfo.availability == 1 ? "AVAILABLE" : "UNAVAILABLE" }}</span></div>
+        <span class="video-link"><strong>Video Profile:</strong> <a [href]="userInfo.video_link" target="_blank">{{ userInfo.video_link }}</a></span>
+        <span class="assessment-link" *ngIf="userType == userAccessType.Company && userInfo.assessment_results_link != ''"><strong>Assessment Results:</strong> <a [href]="userInfo.assessment_results_link" target="_blank">{{ userInfo.assessment_results_link }}</a></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="student-view-container student-view-addition-info mt-0 mb-6">
+  <div class="col-lg-6 col-md-6 col-sm-12">
+    <h5>About</h5>
+    <div [innerHTML]="userInfo.about"></div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-12">
+    <h5>Skills & Techologies</h5>
+    <div *ngFor="let skillset of userInfo.skillsets">
+      <div>
+        <span>{{ skillset.skill.name }} ({{ skillset.total_years_experience }} {{ skillset.total_years_experience > 1 ? 'yrs' : 'yr' }})</span>
+        <p-progressBar [value]="skillset.total_years_experience * 10" [showValue]="false"></p-progressBar>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="student-view-container student-view-addition-info mt-0 mb-6">
+  <div class="col-lg-6 col-md-6 col-sm-12">
+    <h5>Is international student?</h5>
+    <div class="row app-radiobutton mt-2 mb-4" style="margin-left: 0.3rem">
+      {{ userInfo.international == 1 ? "International" : "Domestic" }}
+    </div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-12">
+    <h5>College</h5>
+    <div class="row app-radiobutton mt-2 mb-4">
+      <span>{{ userInfo?.college?.name }}</span>
+      <span *ngIf="userInfo?.college_id == 999">: {{ userInfo?.college_other }}</span>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="userType == userAccessType.Admin">
+  <div class="student-view-container student-view-addition-info mt-3 mb-3">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <label style="text-align: left;">Assessment Results URL</label>
+      <div class="form-floating">
+        <input type="text"
+          class="form-control"
+          id="floatingInput"
+          [(ngModel)]="userInfo.assessment_results_link"
+          name="link"
+          autocomplete="off">
+      </div>
+    </div>
+  </div>
+  
+  <div class="student-view-container student-view-addition-info mt-3 mb-3">
+    <div class="col-lg-1 col-md-1 col-sm-12">
+      <div class="row">
+        <label style="text-align: left;">Rank:</label>
+        <div class="form-floating">
+          <input type="text"
+            class="form-control student-rank"
+            id="floatingInput"
+            [(ngModel)]="userInfo.rank"
+            name="first_name"
+            autocomplete="off">
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-12">
+      <div class="row">
+        <label style="text-align: left;">Skills:</label>
+        <div class="form-floating">
+          <input type="text"
+            class="form-control"
+            id="floatingInput"
+            [(ngModel)]="userInfo.skills"
+            name="first_name"
+            autocomplete="off">
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="student-view-container mt-3 mb-3">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <div>
+        <button class="w-30 btn btn-sm btn-primary student-detail-container__submit-primary" type="submit" (click)="update(userInfo)">
+          <span>UPDATE</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="mb-6">
+    <company-list 
+      [companyHeader]="'List of Companies the User Added'" 
+      [showAddCompanyButton]="showAddCompanyButton" 
+      [adminViewingUser]="true"
+      [userId]="userId">
+    </company-list>
+  </div>
+</ng-container>
